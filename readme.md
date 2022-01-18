@@ -16,7 +16,7 @@ For testing the Software I got a mvBlueFOX3-2051G.
    BlueFox3: 0 absolute physical value!
 
 4. Trigger
-   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external lightsource.
+   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source.
 
 The device specific setting will be an XML file with the serial number of the device as the file name, the product specific setting will be an XML file with the product string as the filename, the device family specific setting will be an XML file with the device family name as the file name. All other XML files containing settings will be ignored
 
@@ -30,7 +30,7 @@ Once the _DeviceManager_ is initialized, new connected devices are appended to t
 
 Once the settings(frameRate, exposureTime, etc) are applied, they are "stored" independent of opening and closing the device as long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings.
 
-# Some usefull Info before Starting
+# Some useful Info before Starting
 
 To get the current values of some settings there are mostly used to functions depending on the type of the value (string or float/integer)
 
