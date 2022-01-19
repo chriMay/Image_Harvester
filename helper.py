@@ -128,7 +128,7 @@ class deviceHandler:
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStop()
             if result != DMR_NO_ERROR:
-                print("'FunctionInterface.acquisitionStop' returned with an unexpected result: " + str(result) + "(" + ImpactAcquireException.getErrorCodeAsString(result) + ")")
+                print("'FunctionInterface.acquisitionStart' returned with an unexpected result: " + str(result) + "(" + ImpactAcquireException.getErrorCodeAsString(result) + ")")
         
         self.pDev.close()
 
@@ -147,13 +147,18 @@ class deviceHandler:
 
         
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
-                result = self.fi.acquisitionStop()
+                result = self.fi.acquisitionStart()
                 if result != DMR_NO_ERROR:
                     print("'FunctionInterface.acquisitionStop' returned with an unexpected result: " + str(result) + "(" + ImpactAcquireException.getErrorCodeAsString(result) + ")")
 
         while self.running:
             self.harvesting_process(single=False)
         
+        if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
+                result = self.fi.acquisitionStop()
+                if result != DMR_NO_ERROR:
+                    print("'FunctionInterface.acquisitionStop' returned with an unexpected result: " + str(result) + "(" + ImpactAcquireException.getErrorCodeAsString(result) + ")")
+
     def start_image_stream(self):
         """Start the image stream"""           
         self.running = True
