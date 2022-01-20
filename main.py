@@ -6,4 +6,3 @@ from main_ui import HarvesterInterface
 devMgr = DeviceManager()
 
 gui = HarvesterInterface(devMgr)
-
