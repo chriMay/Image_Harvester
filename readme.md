@@ -20,6 +20,12 @@ For testing the Software I got a mvBlueFOX3-2051G.
 
 The device specific setting will be an XML file with the serial number of the device as the file name, the product specific setting will be an XML file with the product string as the filename, the device family specific setting will be an XML file with the device family name as the file name. All other XML files containing settings will be ignored
 
+# How to run the code
+
+1.       $ git clone https://github.com/chriMay/Image_Harvester.git
+2.       $ cd ../Image_Harvester
+3.       $ python main.py
+
 # Important Information
 
 ## DeviceManager
@@ -104,3 +110,11 @@ In a similar way you can write the Values
 - nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
 - Check if the driver & software package for COUGAR and BlueFox3 are the same
 - Improve function for image harvesting (not running well at the Moment)
+
+I'm writing a readme file in vs code and i noticed an annoying behavior, which i don't know how to deal with. When i save the file with ctrl+s an whitespace is added before the code. I had a look at the shortcuts and it shows me two commands for this keybinding. One is the common **File: save** and **Create issue** which refers to  
+ {
+"key": "ctrl+s",
+"command": "issue.createIssueFromFile",
+"when": "!issues.creatingFromFile && resourceScheme == 'newIssue' && config.files.autoSave != 'off'"
+}
+I don't really know what this does and would appreciate any quick help on this.
