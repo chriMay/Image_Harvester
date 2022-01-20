@@ -78,13 +78,29 @@ In a similar way you can write the Values
 
 # Used Packages
 
-- mvIMPACT
+### PyPi
+
 - tkinter
 - pillow
 - numpy
 - ctypes
 
+### Other sources
+
+- mvIMPACT:
+  1.  Download [Drives & Software](https://www.matrix-vision.com/de/downloads/treiber-software) and follow the [instructions](https://www.matrix-vision.com/de/downloads/setup/mvbluecougar-family/quickstart-mvbluecougar-linux)
+  2.  Follow instructions of the [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux)
+
 # Open Questions
 
 - How to handle Subwindow?
 - How to handle config file
+
+# ToDo
+
+- Information Frame: Info ob Aufnahme läuft oder nicht
+- Foto-Format in config.infi übernehmen
+- Statistics von Kamera in Info frame (live die frequenz angeben)
+- nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
+- Check if the driver & software package for COUGAR and BlueFox3 are the same
+- Improve function for image harvesting (not running well at the Moment)
