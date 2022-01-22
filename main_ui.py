@@ -94,10 +94,14 @@ class HarvesterInterface:
         self.gain_info_label = Label(
             self.information_frame, text=f"Gain(ISO): {self.device_settings.gain}"
         )
+        self.active_label = Label(
+            self.information_frame, text="Bildaufnahme nicht aktiv"
+        )
 
         self.frameRate_info_label.grid(row=0, column=0, sticky="w")
         self.exposureTime_info_label.grid(row=1, column=0, sticky="w")
         self.gain_info_label.grid(row=2, column=0, sticky="w")
+        self.active_label.grid(row=3, column=0, sticky="w")
 
         # Populating the image frame
         self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
@@ -227,6 +231,7 @@ class HarvesterInterface:
             self.path_button.configure(state="disabled")
             self.settings_button.configure(state="disabled")
             self.test_button.configure(state="disabled")
+            self.active_label.configure(text="Bildaufnahme aktiv")
 
             index = int(self.clicked_device.get()[1])
             self.devHand = deviceHandler(
@@ -251,3 +256,4 @@ class HarvesterInterface:
         self.path_button.configure(state="normal")
         self.settings_button.configure(state="normal")
         self.test_button.configure(state="normal")
+        self.active_label.configure(text="Bildaufnahme nicht aktiv")
