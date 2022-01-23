@@ -24,9 +24,9 @@ The device specific setting will be an XML file with the serial number of the de
 
 # How to run the code
 
-1.      $ git clone https://github.com/chriMay/Image_Harvester.git
-2.      $ cd ../Image_Harvester
-3.      $ python main.py
+1.     $ git clone https://github.com/chriMay/Image_Harvester.git
+2.     $ cd ../Image_Harvester
+3.     $ python main.py
 
 # Important Information
 
@@ -40,7 +40,7 @@ Once the settings(frameRate, exposureTime, etc) are applied, they are "stored" i
 
 # Some useful Info before Starting
 
-To get the current values of some settings there are mostly used to functions depending on the type of the value (string or float/integer)
+To get the current values of some settings there are two functions depending on the type of the value (string or float/integer)
 
 - read() ... read floats/integer
 - readS() ... read a string
@@ -105,8 +105,7 @@ In a similar way you can write the Values
 - How to handle config file
 
 # ToDo
-
-- Information Frame: Info ob Aufnahme läuft oder nicht
+- Pfade mit pathlib angebem für system_unabhängigkeit
 - Foto-Format in config.infi übernehmen
 - Statistics von Kamera in Info frame (live die frequenz angeben)
 - nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
