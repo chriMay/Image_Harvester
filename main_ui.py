@@ -7,7 +7,7 @@ from helper import deviceHandler
 
 
 class HarvesterInterface:
-    """Main interface for the ImageHarvester"""
+    """Main interface for the ImageHarvester."""
 
     def __init__(self, devMgr) -> None:
         self.devMgr = devMgr
@@ -115,7 +115,7 @@ class HarvesterInterface:
         self.root.mainloop()
 
     def refresh_devices(self):
-        """Refresh devices dropdown menu"""
+        """Refresh devices dropdown menu."""
 
         self.devMgr.updateDeviceList()
 
@@ -132,7 +132,7 @@ class HarvesterInterface:
         self.info_label.configure(text="")
 
     def list_devices(self):
-        """Create a list of available devices"""
+        """Create a list of available devices."""
 
         self.devices_list = []
         for i in range(self.devMgr.deviceCount()):
@@ -148,14 +148,14 @@ class HarvesterInterface:
         self.clicked_device.set(self.devices_list[0])
 
     def select_path(self):
-        """Select path to directory where images shall be stored"""
+        """Select path to directory where images shall be stored."""
 
         temp_path = filedialog.askdirectory(initialdir=self.saving_path.get())
         self.saving_path.set(temp_path)
         self.path_label.configure(text=self.saving_path.get())
 
     def device_settings_menu(self):
-        """Opens a subwindow where some device settings can be changed"""
+        """Opens a subwindow where some device settings can be changed."""
 
         self.top = Toplevel()
         self.top.title("Einstellungen")
@@ -200,7 +200,7 @@ class HarvesterInterface:
         self.back_button.grid(row=3, column=1)
 
     def apply_settings(self):
-        """Apply settings to the selected device"""
+        """Apply settings to the selected device."""
         self.device_settings.frameRate = float(self.frameRate_entry.get())
         self.device_settings.exposureTime = float(self.exposureTime_entry.get())
         self.device_settings.gain = float(self.gain_entry.get())
@@ -214,7 +214,7 @@ class HarvesterInterface:
         self.gain_info_label.configure(text=f"Gain(ISO): {self.device_settings.gain}")
 
     def image_test(self):
-        """Make a test image and display it in the main window"""
+        """Make a test image and display it in the main window."""
         index = int(self.clicked_device.get()[1])
         devHand = deviceHandler(
             self.devMgr, index, self.device_settings, self.saving_path.get()
@@ -227,7 +227,7 @@ class HarvesterInterface:
         self.image_label.image = self.image
 
     def start_harvesting(self):
-        """Start the harvesting process"""
+        """Start the harvesting process."""
 
         if self.devices_list[0][1] == "0":  # Check if devices are found
             # Disable buttons during harvesting process
@@ -251,7 +251,7 @@ class HarvesterInterface:
             self.info_label.configure(text="Gerät nicht erreichbar")
 
     def stop_harvesting(self):
-        """Stop the harvesting process"""
+        """Stop the harvesting process."""
         self.devHand.stop_image_stream()
 
         # Enable buttons again
