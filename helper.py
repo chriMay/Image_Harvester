@@ -70,17 +70,9 @@ class deviceHandler:
                     int(pRequest.imageData.read())
                 )
                 print(cbuf[0:4])
-                channelType = (
-                    numpy.uint16
-                    if pRequest.imageChannelBitDepth.read() > 8
-                    else numpy.uint8
-                )
-                arr = numpy.frombuffer(cbuf, dtype=channelType)
-                arr.shape = (
-                    pRequest.imageHeight.read(),
-                    pRequest.imageWidth.read(),
-                    pRequest.imageChannelCount.read(),
-                )
+                channelType = numpy.uint16 if pRequest.imageChannelBitDepth.read() > 8 else numpy.uint8
+                arr = numpy.frombuffer(cbuf, dtype = channelType)
+                arr.shape = (pRequest.imageHeight.read(), pRequest.imageWidth.read(), pRequest.imageChannelCount.read())
                 print(pRequest.imageChannelBitDepth.readS())
                 if pRequest.imageChannelCount.read() == 1:
                     img = Image.frombytes("L", (2464, 2056), cbuf)
@@ -140,6 +132,8 @@ class deviceHandler:
 
         self.harvesting_process(single=True)
 
+                
+
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStop()
             if result != DMR_NO_ERROR:
@@ -152,6 +146,7 @@ class deviceHandler:
                 )
 
         self.pDev.close()
+
 
     def image_stream(self):
         """
