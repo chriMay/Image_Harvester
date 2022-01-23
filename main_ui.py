@@ -97,11 +97,13 @@ class HarvesterInterface:
         self.active_label = Label(
             self.information_frame, text="Bildaufnahme nicht aktiv"
         )
+        self.info_label = Label(self.information_frame, text="")
 
         self.frameRate_info_label.grid(row=0, column=0, sticky="w")
         self.exposureTime_info_label.grid(row=1, column=0, sticky="w")
         self.gain_info_label.grid(row=2, column=0, sticky="w")
         self.active_label.grid(row=3, column=0, sticky="w")
+        self.info_label.grid(row=4, column=0, sticky="w")
 
         # Populating the image frame
         self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
@@ -126,6 +128,8 @@ class HarvesterInterface:
                 label=device,
                 command=lambda value=device: self.clicked_device.set(value),
             )
+
+        self.info_label.configure(text="")
 
     def list_devices(self):
         """Create a list of available devices"""
@@ -244,8 +248,7 @@ class HarvesterInterface:
             # self.image_label.configure(image=self.image)
             # self.image_label.image=self.image
         else:
-            # Print message on the information frame
-            pass
+            self.info_label.configure(text="Gerät nicht erreichbar")
 
     def stop_harvesting(self):
         """Stop the harvesting process"""
