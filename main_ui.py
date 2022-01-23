@@ -215,16 +215,20 @@ class HarvesterInterface:
 
     def image_test(self):
         """Make a test image and display it in the main window."""
-        index = int(self.clicked_device.get()[1])
-        devHand = deviceHandler(
-            self.devMgr, index, self.device_settings, self.saving_path.get()
-        )
-        devHand.get_single_image()
 
-        self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
-        self.image = ImageTk.PhotoImage(self.image)
-        self.image_label.configure(image=self.image)
-        self.image_label.image = self.image
+        if self.devices_list[0][1] == "0":   
+            index = int(self.clicked_device.get()[1])
+            devHand = deviceHandler(
+                self.devMgr, index, self.device_settings, self.saving_path.get()
+            )
+            devHand.get_single_image()
+
+            self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
+            self.image = ImageTk.PhotoImage(self.image)
+            self.image_label.configure(image=self.image)
+            self.image_label.image = self.image
+        else:
+            self.info_label.configure(text="Gerät nicht erreichbar")
 
     def start_harvesting(self):
         """Start the harvesting process."""
