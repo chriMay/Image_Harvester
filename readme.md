@@ -105,7 +105,6 @@ In a similar way you can write the Values
 - How to handle config file
 
 # ToDo
-- Pfade mit pathlib angebem für system_unabhängigkeit
 - Foto-Format in config.infi übernehmen
 - Statistics von Kamera in Info frame (live die frequenz angeben)
 - nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)

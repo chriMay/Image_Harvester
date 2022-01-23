@@ -1,5 +1,6 @@
 from datetime import datetime
-import os
+from os import path, mkdir
+from pathlib import Path
 from threading import Thread
 from mvIMPACT.acquire import *
 from PIL import Image
@@ -24,12 +25,12 @@ class deviceHandler:
         current_time = datetime.now().strftime("%H-%M-%S-%f")
         file_name = f"{current_time}.bmp"
 
-        save_path = f"{self.save_path}/{dir_name}"
+        save_path = Path(self.save_path, dir_name)
         print(save_path)
-        if not os.path.isdir(save_path):
-            os.mkdir(save_path)
+        if not path.isdir(save_path):
+            mkdir(save_path)
 
-        image.save(f"{save_path}/{file_name}")
+        image.save(Path(save_path, file_name))
 
     def init_device(self):
         """
@@ -87,7 +88,7 @@ class deviceHandler:
                 else:
                     img = Image.fromarray(arr, "RGBA" if 0.8 else "RGB")
 
-                img_temp_path = f"temp_img/temp.bmp"
+                img_temp_path = Path("temp_img", "temp.bmp")
                 img.save(img_temp_path)
 
                 if single == False:

@@ -1,8 +1,9 @@
 from tkinter import Tk, Frame, OptionMenu, Button, Label, Toplevel, Entry
 from tkinter import StringVar, filedialog
 from PIL import Image, ImageTk
+from os import environ
+from pathlib import Path
 from dev_set import DeviceSettings
-import os
 from helper import deviceHandler
 
 
@@ -45,7 +46,7 @@ class HarvesterInterface:
 
         # Declare a StringVar to store the path to directory where to save images
         self.saving_path = StringVar()
-        self.saving_path.set(os.environ["HOME"])
+        self.saving_path.set(environ["HOME"])
 
         # Label which shows the selected path to directory where to save images
         # Button to select path to directory where to save images
@@ -106,7 +107,7 @@ class HarvesterInterface:
         self.info_label.grid(row=4, column=0, sticky="w")
 
         # Populating the image frame
-        self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
+        self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
         self.image = ImageTk.PhotoImage(self.image)
         self.image_label = Label(self.image_frame, image=self.image)
         self.image_label.grid(row=0, column=0)
@@ -216,14 +217,14 @@ class HarvesterInterface:
     def image_test(self):
         """Make a test image and display it in the main window."""
 
-        if self.devices_list[0][1] == "0":   
+        if self.devices_list[0][1] == "0":
             index = int(self.clicked_device.get()[1])
             devHand = deviceHandler(
                 self.devMgr, index, self.device_settings, self.saving_path.get()
             )
             devHand.get_single_image()
 
-            self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
+            self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
             self.image = ImageTk.PhotoImage(self.image)
             self.image_label.configure(image=self.image)
             self.image_label.image = self.image
@@ -247,7 +248,7 @@ class HarvesterInterface:
             )
             self.devHand.start_image_stream()
 
-            # self.image = Image.open("temp_img/temp.bmp").resize((616, 514))
+            # self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
             # elf.image = ImageTk.PhotoImage(self.image)
             # self.image_label.configure(image=self.image)
             # self.image_label.image=self.image
