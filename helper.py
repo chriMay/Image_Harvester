@@ -16,7 +16,7 @@ class deviceHandler:
 
     def save_to_path(self, image):
         """
-        Make directory with name of format YYYY-MM-DD_hh:mm
+        Make directory with name of format YYYY-MM-DD_hh:mm .
         """
 
         dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M")
@@ -33,7 +33,7 @@ class deviceHandler:
 
     def init_device(self):
         """
-        Initialize a device with the given settings
+        Initialize a device with the given settings.
         index: Index of selected device from the deviceslist
         """
         self.pDev = self.devMgr.getDevice(self.index)
@@ -58,7 +58,7 @@ class deviceHandler:
 
     def harvesting_process(self, single):
         """
-        sugprocess in the image acquisition process
+        Subprocess in the image acquisition process.
         single: if True only one image shall be taken
         """
         pPreviousRequest = None
@@ -118,7 +118,7 @@ class deviceHandler:
 
     def get_single_image(self):
         """
-        Function to acquire images
+        Function to acquire one single image.
         save_path: the path where the images shall be stored
         test: if True, only one test image will be made
         """
@@ -155,7 +155,8 @@ class deviceHandler:
 
     def image_stream(self):
         """
-        Function to acquire images
+        Function to acquire multiple images.
+        Can be started with start_image_strem() and stopped with stop_image_stream()
         save_path: the path where the images shall be stored
         test: if True, only one test image will be made
         """
@@ -191,12 +192,12 @@ class deviceHandler:
                 )
 
     def start_image_stream(self):
-        """Start the image stream"""
+        """Start the image stream."""
         self.running = True
         newthread = Thread(target=self.image_stream)
         newthread.start()
 
     def stop_image_stream(self):
-        """Stop the imaage stream and close device"""
+        """Stop the imaage stream and close device."""
         self.running = False
         self.pDev.close()
