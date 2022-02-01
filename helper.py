@@ -12,6 +12,7 @@ class deviceHandler:
     def __init__(self, devMgr, index, configuration, save_path):
         self.devMgr = devMgr
         self.configuration = configuration
+        # Index of selected device from the deviceslist
         self.index = index
         self.save_path = save_path
 
@@ -35,7 +36,6 @@ class deviceHandler:
     def init_device(self):
         """
         Initialize a device with the given configuration.
-        index: Index of selected device from the deviceslist
         """
         self.pDev = self.devMgr.getDevice(self.index)
         # interfaceLayout decides if [1]deviceSpecific interface or [2]GenICam interface will be used
@@ -52,8 +52,8 @@ class deviceHandler:
         self.acqui_control.acquisitionFrameRate.write(self.configuration.frameRate)
         self.acqui_control.exposureTime.write(self.configuration.exposureTime)
         self.analog_control.gain.write(self.configuration.gain)
-        # self.digitalIO_control.lineSelector.writeS(self.configuration.line)
-        # self.digitalIO_control.lineSource.writeS(self.configuration.lineSource)
+        self.digitalIO_control.lineSelector.writeS(self.configuration.line)
+        self.digitalIO_control.lineSource.writeS(self.configuration.lineSource)
 
         self.fi = FunctionInterface(self.pDev)
 
@@ -63,7 +63,7 @@ class deviceHandler:
         single: if True only one image shall be taken
         """
         pPreviousRequest = None
-        requestNr = self.fi.imageRequestWaitFor(10000)
+        requestNr = self.fi.imageRequestWaitFor(35000)
         if self.fi.isRequestNrValid(requestNr):
             pRequest = self.fi.getRequest(requestNr)
             if pRequest.isOK:
@@ -88,7 +88,9 @@ class deviceHandler:
                 else:
                     img = Image.fromarray(arr, "RGBA" if 0.8 else "RGB")
 
-                img_temp_path = Path("temp_img", "temp"+self.configuration.image_format)
+                img_temp_path = Path(
+                    "temp_img", "temp" + self.configuration.image_format
+                )
                 img.save(img_temp_path)
 
                 if single == False:

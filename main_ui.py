@@ -62,7 +62,9 @@ class HarvesterInterface:
 
         # Button to write settings to the selected device
         self.settings_button = Button(
-            self.input_frame, text="Einstellungen", command=self.default_configuration_menu
+            self.input_frame,
+            text="Einstellungen",
+            command=self.default_configuration_menu,
         )
         self.settings_button.grid(row=2, column=0, sticky="we")
 
@@ -107,7 +109,9 @@ class HarvesterInterface:
         self.info_label.grid(row=4, column=0, sticky="w")
 
         # Populating the image frame
-        self.image = Image.open(Path("temp_img", "temp"+ self.default_configuration.image_format)).resize((616, 514))
+        self.image = Image.open(
+            Path("temp_img", "temp" + self.default_configuration.image_format)
+        ).resize((616, 514))
         self.image = ImageTk.PhotoImage(self.image)
         self.image_label = Label(self.image_frame, image=self.image)
         self.image_label.grid(row=0, column=0)
@@ -212,7 +216,9 @@ class HarvesterInterface:
         self.exposureTime_info_label.configure(
             text=f"Belichtungszeit: {self.default_configuration.exposureTime} \u03BCs"
         )
-        self.gain_info_label.configure(text=f"Gain(ISO): {self.default_configuration.gain}")
+        self.gain_info_label.configure(
+            text=f"Gain(ISO): {self.default_configuration.gain}"
+        )
 
     def image_test(self):
         """Make a test image and display it in the main window."""
@@ -224,7 +230,9 @@ class HarvesterInterface:
             )
             devHand.get_single_image()
 
-            self.image = Image.open(Path("temp_img", "temp"+self.default_configuration.image_format)).resize((616, 514))
+            self.image = Image.open(
+                Path("temp_img", "temp" + self.default_configuration.image_format)
+            ).resize((616, 514))
             self.image = ImageTk.PhotoImage(self.image)
             self.image_label.configure(image=self.image)
             self.image_label.image = self.image
