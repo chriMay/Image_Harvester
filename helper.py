@@ -9,9 +9,9 @@ import ctypes
 
 
 class deviceHandler:
-    def __init__(self, devMgr, index, settings, save_path):
+    def __init__(self, devMgr, index, configuration, save_path):
         self.devMgr = devMgr
-        self.settings = settings
+        self.configuration = configuration
         self.index = index
         self.save_path = save_path
 
@@ -23,7 +23,7 @@ class deviceHandler:
         dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M")
 
         current_time = datetime.now().strftime("%H-%M-%S-%f")
-        file_name = f"{current_time}.bmp"
+        file_name = f"{current_time}{self.configuration.image_format}"
 
         save_path = Path(self.save_path, dir_name)
         print(save_path)
@@ -34,7 +34,7 @@ class deviceHandler:
 
     def init_device(self):
         """
-        Initialize a device with the given settings.
+        Initialize a device with the given configuration.
         index: Index of selected device from the deviceslist
         """
         self.pDev = self.devMgr.getDevice(self.index)
@@ -48,12 +48,12 @@ class deviceHandler:
         self.analog_control = AnalogControl(self.pDev)
         self.digitalIO_control = DigitalIOControl(self.pDev)
 
-        # Write the given settings to the device
-        self.acqui_control.acquisitionFrameRate.write(self.settings.frameRate)
-        self.acqui_control.exposureTime.write(self.settings.exposureTime)
-        self.analog_control.gain.write(self.settings.gain)
-        # self.digitalIO_control.lineSelector.writeS(self.settings.line)
-        # self.digitalIO_control.lineSource.writeS(self.settings.lineSource)
+        # Write the given configuration to the device
+        self.acqui_control.acquisitionFrameRate.write(self.configuration.frameRate)
+        self.acqui_control.exposureTime.write(self.configuration.exposureTime)
+        self.analog_control.gain.write(self.configuration.gain)
+        # self.digitalIO_control.lineSelector.writeS(self.configuration.line)
+        # self.digitalIO_control.lineSource.writeS(self.configuration.lineSource)
 
         self.fi = FunctionInterface(self.pDev)
 
@@ -88,7 +88,7 @@ class deviceHandler:
                 else:
                     img = Image.fromarray(arr, "RGBA" if 0.8 else "RGB")
 
-                img_temp_path = Path("temp_img", "temp.bmp")
+                img_temp_path = Path("temp_img", "temp"+self.configuration.image_format)
                 img.save(img_temp_path)
 
                 if single == False:

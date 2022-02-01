@@ -3,7 +3,7 @@ from tkinter import StringVar, filedialog
 from PIL import Image, ImageTk
 from os import environ
 from pathlib import Path
-from dev_set import DeviceSettings
+from dev_set import Configuration
 from helper import deviceHandler
 
 
@@ -12,7 +12,7 @@ class HarvesterInterface:
 
     def __init__(self, devMgr) -> None:
         self.devMgr = devMgr
-        self.device_settings = DeviceSettings()
+        self.default_configuration = Configuration()
         self.root = Tk()
         self.root.title("Image Harvester")
 
@@ -62,7 +62,7 @@ class HarvesterInterface:
 
         # Button to write settings to the selected device
         self.settings_button = Button(
-            self.input_frame, text="Einstellungen", command=self.device_settings_menu
+            self.input_frame, text="Einstellungen", command=self.default_configuration_menu
         )
         self.settings_button.grid(row=2, column=0, sticky="we")
 
@@ -86,14 +86,14 @@ class HarvesterInterface:
         # Populating the information frame
         self.frameRate_info_label = Label(
             self.information_frame,
-            text=f"Bildfrequenz: {self.device_settings.frameRate} Hz",
+            text=f"Bildfrequenz: {self.default_configuration.frameRate} Hz",
         )
         self.exposureTime_info_label = Label(
             self.information_frame,
-            text=f"Belichtungszeit: {self.device_settings.exposureTime} \u03BCs",
+            text=f"Belichtungszeit: {self.default_configuration.exposureTime} \u03BCs",
         )
         self.gain_info_label = Label(
-            self.information_frame, text=f"Gain(ISO): {self.device_settings.gain}"
+            self.information_frame, text=f"Gain(ISO): {self.default_configuration.gain}"
         )
         self.active_label = Label(
             self.information_frame, text="Bildaufnahme nicht aktiv"
@@ -107,7 +107,7 @@ class HarvesterInterface:
         self.info_label.grid(row=4, column=0, sticky="w")
 
         # Populating the image frame
-        self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
+        self.image = Image.open(Path("temp_img", "temp"+ self.default_configuration.image_format)).resize((616, 514))
         self.image = ImageTk.PhotoImage(self.image)
         self.image_label = Label(self.image_frame, image=self.image)
         self.image_label.grid(row=0, column=0)
@@ -155,7 +155,7 @@ class HarvesterInterface:
         self.saving_path.set(temp_path)
         self.path_label.configure(text=self.saving_path.get())
 
-    def device_settings_menu(self):
+    def default_configuration_menu(self):
         """Opens a subwindow where some device settings can be changed."""
 
         self.top = Toplevel()
@@ -172,13 +172,13 @@ class HarvesterInterface:
 
         # Entries for the Settings-Subwindow
         self.frameRate_entry = Entry(self.top, width=20, borderwidth=3)
-        self.frameRate_entry.insert(0, self.device_settings.frameRate)
+        self.frameRate_entry.insert(0, self.default_configuration.frameRate)
 
         self.exposureTime_entry = Entry(self.top, width=20, borderwidth=3)
-        self.exposureTime_entry.insert(0, self.device_settings.exposureTime)
+        self.exposureTime_entry.insert(0, self.default_configuration.exposureTime)
 
         self.gain_entry = Entry(self.top, width=20, borderwidth=3)
-        self.gain_entry.insert(0, self.device_settings.gain)
+        self.gain_entry.insert(0, self.default_configuration.gain)
 
         self.frameRate_entry.grid(row=0, column=1)
         self.exposureTime_entry.grid(row=1, column=1)
@@ -202,17 +202,17 @@ class HarvesterInterface:
 
     def apply_settings(self):
         """Apply settings to the selected device."""
-        self.device_settings.frameRate = float(self.frameRate_entry.get())
-        self.device_settings.exposureTime = float(self.exposureTime_entry.get())
-        self.device_settings.gain = float(self.gain_entry.get())
+        self.default_configuration.frameRate = float(self.frameRate_entry.get())
+        self.default_configuration.exposureTime = float(self.exposureTime_entry.get())
+        self.default_configuration.gain = float(self.gain_entry.get())
 
         self.frameRate_info_label.configure(
-            text=f"Bildfrequenz: {self.device_settings.frameRate} Hz"
+            text=f"Bildfrequenz: {self.default_configuration.frameRate} Hz"
         )
         self.exposureTime_info_label.configure(
-            text=f"Belichtungszeit: {self.device_settings.exposureTime} \u03BCs"
+            text=f"Belichtungszeit: {self.default_configuration.exposureTime} \u03BCs"
         )
-        self.gain_info_label.configure(text=f"Gain(ISO): {self.device_settings.gain}")
+        self.gain_info_label.configure(text=f"Gain(ISO): {self.default_configuration.gain}")
 
     def image_test(self):
         """Make a test image and display it in the main window."""
@@ -220,11 +220,11 @@ class HarvesterInterface:
         if self.devices_list[0][1] == "0":
             index = int(self.clicked_device.get()[1])
             devHand = deviceHandler(
-                self.devMgr, index, self.device_settings, self.saving_path.get()
+                self.devMgr, index, self.default_configuration, self.saving_path.get()
             )
             devHand.get_single_image()
 
-            self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
+            self.image = Image.open(Path("temp_img", "temp"+self.default_configuration.image_format)).resize((616, 514))
             self.image = ImageTk.PhotoImage(self.image)
             self.image_label.configure(image=self.image)
             self.image_label.image = self.image
@@ -244,11 +244,11 @@ class HarvesterInterface:
 
             index = int(self.clicked_device.get()[1])
             self.devHand = deviceHandler(
-                self.devMgr, index, self.device_settings, self.saving_path.get()
+                self.devMgr, index, self.default_configuration, self.saving_path.get()
             )
             self.devHand.start_image_stream()
 
-            # self.image = Image.open(Path("temp_img", "temp.bmp")).resize((616, 514))
+            # self.image = Image.open(Path("temp_img", "temp"+self.default_configuration.image_format)).resize((616, 514))
             # elf.image = ImageTk.PhotoImage(self.image)
             # self.image_label.configure(image=self.image)
             # self.image_label.image=self.image

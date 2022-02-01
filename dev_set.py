@@ -1,7 +1,8 @@
 from configparser import ConfigParser
 
 
-class DeviceSettings:
+class Configuration:
+
     def __init__(self):
         config = ConfigParser()
         config.read("config.ini")
@@ -10,3 +11,6 @@ class DeviceSettings:
         self.gain = float(config.get("device", "gain"))
         self.line = config.get("device", "line")
         self.lineSource = config.get("device", "lineSource")
+        
+        self.image_format = config.get("other", "image_format")
+
