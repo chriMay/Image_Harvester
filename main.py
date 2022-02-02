@@ -3,6 +3,7 @@
 from mvIMPACT.acquire import DeviceManager
 from main_ui import HarvesterInterface
 
-devMgr = DeviceManager()
+if __name__ == "__main__":
+    devMgr = DeviceManager()
 
-gui = HarvesterInterface(devMgr)
+    gui = HarvesterInterface(devMgr)

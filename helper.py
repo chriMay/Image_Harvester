@@ -28,7 +28,7 @@ class deviceHandler:
         file_name = f"{current_time}{self.configuration.image_format}"
 
         save_path = Path(self.save_path, dir_name)
-        print(save_path)
+
         if not path.isdir(save_path):
             mkdir(save_path)
 
@@ -118,8 +118,6 @@ class deviceHandler:
                 + ")"
             )
 
-        print(f"done for Request: {requestNr}")
-
     def get_single_image(self):
         """
         Function to acquire one single image.
@@ -133,7 +131,7 @@ class deviceHandler:
 
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStop()
-            if result != DMR_NO_ERROR:
+            if result is not DMR_NO_ERROR:
                 print(
                     "'FunctionInterface.acquisitionStop' returned with an unexpected result: "
                     + str(result)
@@ -146,7 +144,7 @@ class deviceHandler:
 
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStop()
-            if result != DMR_NO_ERROR:
+            if result is not DMR_NO_ERROR:
                 print(
                     "'FunctionInterface.acquisitionStart' returned with an unexpected result: "
                     + str(result)
@@ -172,7 +170,7 @@ class deviceHandler:
 
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStart()
-            if result != DMR_NO_ERROR:
+            if result is not DMR_NO_ERROR:
                 print(
                     "'FunctionInterface.acquisitionStop' returned with an unexpected result: "
                     + str(result)
@@ -186,7 +184,7 @@ class deviceHandler:
 
         if self.pDev.acquisitionStartStopBehaviour.read() == assbUser:
             result = self.fi.acquisitionStop()
-            if result != DMR_NO_ERROR:
+            if result is not DMR_NO_ERROR:
                 print(
                     "'FunctionInterface.acquisitionStop' returned with an unexpected result: "
                     + str(result)
