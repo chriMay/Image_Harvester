@@ -1,9 +1,9 @@
-# Not finished yet, works but not usable in field
+# Not final version, but functional
 
 # Task
 
-Programming a HMI to connect to an installed Camera from MatrixVision, to make changes on some settings and to get images and save them to a given path.
-The currently used camera in the field is mvBlueCOUGAR-X105bG-POE-IP67
+HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path.
+The currently used camera in the field is mvBlueCOUGAR-X105bG
 For testing the Software I got a mvBlueFOX3-2051G.
 
 ## Parameters to be set (with device specific default settings):
@@ -18,15 +18,13 @@ For testing the Software I got a mvBlueFOX3-2051G.
    BlueFox3: 0 absolute physical value!
 
 4. Trigger
-   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source.
-
-The device specific setting will be an XML file with the serial number of the device as the file name, the product specific setting will be an XML file with the product string as the filename, the device family specific setting will be an XML file with the device family name as the file name. All other XML files containing settings will be ignored
+   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source. (see _config.ini_)
 
 # How to run the code
 
-1.     $ git clone https://github.com/chriMay/Image_Harvester.git
-2.     $ cd ../Image_Harvester
-3.     $ python main.py
+1. $ git clone https://github.com/chriMay/Image_Harvester.git
+2. $ cd ../Image_Harvester
+3. $ python main.py
 
 # Important Information
 
@@ -36,7 +34,7 @@ Once the _DeviceManager_ is initialized, new connected devices are appended to t
 
 ## Settings
 
-Once the settings(frameRate, exposureTime, etc) are applied, they are "stored" independent of opening and closing the device as long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings.
+Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "stored" independent of opening and closing the device. As long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings. Therefore the "default-settings" can be changed in the _config.ini_
 
 # Some useful Info before Starting
 
@@ -101,12 +99,8 @@ In a similar way you can write the Values
 
 # Open Questions
 
-- How to handle Subwindow?
-- How to handle config file
-
 # ToDo
-- Foto-Format in config.infi übernehmen
+
 - Statistics von Kamera in Info frame (live die frequenz angeben)
 - nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
 - Check if the driver & software package for COUGAR and BlueFox3 are the same
-- Improve function for image harvesting (not running well at the Moment)
