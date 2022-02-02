@@ -6,6 +6,7 @@ from mvIMPACT.acquire import *
 from PIL import Image
 import numpy
 import ctypes
+import sys
 
 
 class deviceHandler:
@@ -62,9 +63,12 @@ class deviceHandler:
         Subprocess in the image acquisition process.
         single: if True only one image shall be taken
         """
-        pPreviousRequest = None
+
+        print("before")
         requestNr = self.fi.imageRequestWaitFor(35000)
+        print("after")
         if self.fi.isRequestNrValid(requestNr):
+            print(f"Handle Request: {requestNr}")
             pRequest = self.fi.getRequest(requestNr)
             if pRequest.isOK:
                 cbuf = (ctypes.c_char * pRequest.imageSize.read()).from_address(
@@ -96,9 +100,9 @@ class deviceHandler:
                 if single == False:
                     self.save_to_path(img)
 
-            if pPreviousRequest != None:
-                pPreviousRequest.unlock()
-            pPreviousRequest = pRequest
+            if pRequest.unlock() is not DMR_NO_ERROR:
+                print("unlock unsuccesfull", file=sys.stderr)
+
             self.fi.imageRequestSingle()
         else:
             # Please note that slow systems or interface technologies in combination with high resolution sensors
@@ -118,6 +122,8 @@ class deviceHandler:
                 + ImpactAcquireException.getErrorCodeAsString(requestNr)
                 + ")"
             )
+
+        print(f"done for Request: {requestNr}")
 
     def get_single_image(self):
         """
