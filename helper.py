@@ -64,17 +64,13 @@ class deviceHandler:
         single: if True only one image shall be taken
         """
 
-        print("before")
         requestNr = self.fi.imageRequestWaitFor(35000)
-        print("after")
         if self.fi.isRequestNrValid(requestNr):
-            print(f"Handle Request: {requestNr}")
             pRequest = self.fi.getRequest(requestNr)
             if pRequest.isOK:
                 cbuf = (ctypes.c_char * pRequest.imageSize.read()).from_address(
                     int(pRequest.imageData.read())
                 )
-                print(cbuf[0:4])
                 channelType = (
                     numpy.uint16
                     if pRequest.imageChannelBitDepth.read() > 8
@@ -86,7 +82,6 @@ class deviceHandler:
                     pRequest.imageWidth.read(),
                     pRequest.imageChannelCount.read(),
                 )
-                print(pRequest.imageChannelBitDepth.readS())
                 if pRequest.imageChannelCount.read() == 1:
                     img = Image.frombytes("L", (2464, 2056), cbuf)
                 else:
