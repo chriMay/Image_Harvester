@@ -25,7 +25,7 @@ class deviceHandler:
         dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M")
 
         current_time = datetime.now().strftime("%H-%M-%S-%f")
-        file_name = f"{current_time}{self.configuration.image_format}"
+        file_name = f"{current_time}.{self.configuration.image_format}"
 
         save_path = Path(self.save_path, dir_name)
 
@@ -88,7 +88,7 @@ class deviceHandler:
                     img = Image.fromarray(arr, "RGBA" if 0.8 else "RGB")
 
                 img_temp_path = Path(
-                    "temp_img", "temp" + self.configuration.image_format
+                    "temp_img", "temp." + self.configuration.image_format
                 )
                 img.save(img_temp_path)
 
