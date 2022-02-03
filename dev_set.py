@@ -11,4 +11,6 @@ class Configuration:
         self.line = config.get("device", "line")
         self.lineSource = config.get("device", "lineSource")
 
-        self.image_format = config.get("other", "image_format")
+        self.image_format = config.get("image", "image_format")
+        self.snippet_position = config.get("image", "snippet_position")
+        self.snippet_size = config.get("image", "snippet_size")
