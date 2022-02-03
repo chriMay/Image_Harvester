@@ -33,26 +33,49 @@ For testing the Software I got a mvBlueFOX3-2051G.
 2. $ cd ../Image_Harvester
 3. $ python main.py
 
-## Usage of GUI
+## Enduser-Usage of Image-Harvester
 
 There is a main-window and a subwindow for the settings.
 
-### Mainwindow
+### Main-Window
 
-![Screenshot](pictures/noted_mainwindow.png)
+![Mainwindow](pictures/noted_mainwindow.png)
 
 1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Known Issues** section.
 
 2. In this row you can see the current path where the images should be stored. With the button _Speicherort wählen_ you can change the path.
 
 3. In the next row you can choose the path where the images will be stored
-   With the Button _Einstellungen_ the **Settings-Subwindow** will pop up.
+   With the Button _Einstellungen_ the **Settings-Window** (see section below) will pop up.
 
 4. With the button _Testbild_ you can make a test image to check if your settings are correct and the device points in the right direction.
 
 5. Pressing the _Start_-button starts the Harvesting Process of the images. If its active an information (Bildaufnahme aktiv) is displayed on the _Information-frame_. A folder will be created which is named in the format _YYYY-MM-DD_hh-mm_. The images are stored in this folder and named after the timestamp when they were taken. If there is not device found an information is displayed on the _Information-frame_.
 
-### Settings-Subwindow
+6. Pressing the _Stop_-button stops the Harvesting Process. (At the moment a bit brutal implementation)
+
+### Settings-Window
+
+![Settings-](pictures/screenshot_settings.png)  
+In this window the frame-rate (_Bildfrequenz_), exposure-time(_Belichtungszeit_) and the gain (_Gain(ISO)_) can be changed. The button _Übernehmen_ overwrites the default-settings in the _config.ini_ file. The current settings are displayed in the _Information-frame_ of the **Main-Window** (see section above).  
+**Notice:** With every start of the program the settings change back to the default-settings from the _config.ini_ file.
+
+## Config-file (_config.ini_)
+
+If you use some settings very often you can change the default-settings in the config-file. Therefore just overwrite the values according to the parameter you want to change.  
+**Important info about parameters:**
+
+- FrameRate
+  Unit: Hz
+
+- Exposure Time
+  Unit: µs (Microseconds)
+
+- Gain
+  Unit: absolute value (for more information see [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux))
+
+- Trigger
+  There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source. (see _config.ini_)
 
 # Important Information
 
