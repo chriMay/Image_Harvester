@@ -87,41 +87,6 @@ Once the _DeviceManager_ is initialized, new connected devices are appended to t
 
 Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "stored" independent of opening and closing the device. As long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings. Therefore the "default-settings" can be changed in the _config.ini_
 
-# Some useful Info before Starting
-
-To get the current values of some settings there are two functions depending on the type of the value (string or float/integer)
-
-- read() ... read floats/integer
-- readS() ... read a string
-
-In a similar way you can write the Values
-
-- write()
-- writeS()
-
-### Example:
-
-- pDev.interfaceLayout.write(2)
-  changes interfaceLayout to GenICam interface
-
-- pDev.interfaceLayout.readS()
-  returns the current interfaceLayout als string zurück ("GenICam")
-
-# Important classes in acquire-package with important methods
-
-## DeviceManager
-
-- getDevice(index)
-
-## ImageDisplayWindow
-
-- GetImageDisplay()
-- SetRefreshTime()
-
-## FunctionInterface
-
-- getRequest()
-
 # Known issues
 
 ## Bug beim Aktualisieren des Dropdown-Menus zum auswählen der Kamera
@@ -152,6 +117,6 @@ In a similar way you can write the Values
 
 # ToDo
 
-- Statistics von Kamera in Info frame (live die frequenz angeben)
+- Statistics von Kamera in Info frame (zb:live die frequenz angeben)
 - nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
 - Check if the driver & software package for COUGAR and BlueFox3 are the same
