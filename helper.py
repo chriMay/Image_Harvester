@@ -64,7 +64,7 @@ class deviceHandler:
         single: if True only one image shall be taken
         """
 
-        requestNr = self.fi.imageRequestWaitFor(35000)
+        requestNr = self.fi.imageRequestWaitFor(10000)
         if self.fi.isRequestNrValid(requestNr):
             pRequest = self.fi.getRequest(requestNr)
             if pRequest.isOK:

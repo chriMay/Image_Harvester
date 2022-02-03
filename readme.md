@@ -1,12 +1,17 @@
 # Not final version, but functional
 
-# Task
+# Important Information
+
+- The language of the GUI is german
+- It is written on a Linux-based system and not tested on other OS.
+
+## Task
 
 HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path.
 The currently used camera in the field is mvBlueCOUGAR-X105bG
 For testing the Software I got a mvBlueFOX3-2051G.
 
-## Parameters to be set (with device specific default settings):
+## Parameters which can be set (with device specific default settings):
 
 1. FrameRate (Frequenz mit der Bilder aufgenommen werden)
    BlueFox3: 5450 Hz
@@ -20,11 +25,23 @@ For testing the Software I got a mvBlueFOX3-2051G.
 4. Trigger
    There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source. (see _config.ini_)
 
-# How to run the code
+# How to use
+
+## How to run the code
 
 1. $ git clone https://github.com/chriMay/Image_Harvester.git
 2. $ cd ../Image_Harvester
 3. $ python main.py
+
+## Usage of GUI
+
+The language of the GUI is german. There is a main-window and a subwindow for the settings.
+
+### Main-Window
+
+![Screenshot](pictures/screenshot_gui.png)
+At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. For unusual behavior you may have a look at the **Known Issues** section.
+In the next row you can choose
 
 # Important Information
 
@@ -94,7 +111,7 @@ In a similar way you can write the Values
 ### Other sources
 
 - mvIMPACT:
-  1.  Download [Drives & Software](https://www.matrix-vision.com/de/downloads/treiber-software) and follow the [instructions](https://www.matrix-vision.com/de/downloads/setup/mvbluecougar-family/quickstart-mvbluecougar-linux)
+  1.  Download [Drivers & Software](https://www.matrix-vision.com/de/downloads/treiber-software) and follow the [instructions](https://www.matrix-vision.com/de/downloads/setup/mvbluecougar-family/quickstart-mvbluecougar-linux)
   2.  Follow instructions of the [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux)
 
 # Open Questions
