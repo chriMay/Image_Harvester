@@ -35,13 +35,24 @@ For testing the Software I got a mvBlueFOX3-2051G.
 
 ## Usage of GUI
 
-The language of the GUI is german. There is a main-window and a subwindow for the settings.
+There is a main-window and a subwindow for the settings.
 
-### Main-Window
+### Mainwindow
 
-![Screenshot](pictures/screenshot_gui.png)
-At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. For unusual behavior you may have a look at the **Known Issues** section.
-In the next row you can choose
+![Screenshot](pictures/noted_mainwindow.png)
+
+1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Known Issues** section.
+
+2. In this row you can see the current path where the images should be stored. With the button _Speicherort wählen_ you can change the path.
+
+3. In the next row you can choose the path where the images will be stored
+   With the Button _Einstellungen_ the **Settings-Subwindow** will pop up.
+
+4. With the button _Testbild_ you can make a test image to check if your settings are correct and the device points in the right direction.
+
+5. Pressing the _Start_-button starts the Harvesting Process of the images. If its active an information (Bildaufnahme aktiv) is displayed on the _Information-frame_. A folder will be created which is named in the format _YYYY-MM-DD_hh-mm_. The images are stored in this folder and named after the timestamp when they were taken. If there is not device found an information is displayed on the _Information-frame_.
+
+### Settings-Subwindow
 
 # Important Information
 
