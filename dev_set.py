@@ -13,11 +13,14 @@ class Configuration:
 
         self.image_format = config.get("image", "image_format")
 
+        # Coordinates in Pixels of left upper corner of the snippet
+        # As (x, y) starting from left upper corner of the original image
         self.snippet_position = (
             int(config.get("image", "snippet_position_x")),
             int(config.get("image", "snippet_position_y")),
         )
 
+        # Size of the snippet in vertical (x-direction) and horizontal (y-direction) direction
         self.snippet_size = (
             int(config.get("image", "snippet_size_x")),
             int(config.get("image", "snippet_size_y")),
