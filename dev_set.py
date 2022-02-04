@@ -37,4 +37,4 @@ class Configuration:
             )
 
 
-print(Configuration().snippet_position)
+print(type(Configuration().snippet_position))
