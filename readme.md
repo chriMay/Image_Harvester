@@ -126,6 +126,5 @@ Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "sto
 
 # ToDo
 
-- Statistics von Kamera in Info frame (zb:live die frequenz angeben)
-- nur bildausschnitt übernehmen (Größe des Ausschnitts übernehmen und Position[xy]-> linke obere Ecke als Referenz)
-- Check if the driver & software package for COUGAR and BlueFox3 are the same
+- Statistics of camera in GUI or a logfile (zb:live die frequenz angeben)
+- description snippet

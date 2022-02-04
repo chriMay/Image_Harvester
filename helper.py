@@ -97,7 +97,7 @@ class deviceHandler:
                         self.configuration.snippet_size != (0, 0)):
                     snippet = img.crop(self.configuration.box())
                     draw = ImageDraw.Draw(img)
-                    draw.rectangle(self.configuration.box(), outline="black", width=2)
+                    draw.rectangle(self.configuration.box(), outline=self.configuration.snippet_color, width=2)
                 else:
                     snippet = img
 
