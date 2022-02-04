@@ -12,5 +12,29 @@ class Configuration:
         self.lineSource = config.get("device", "lineSource")
 
         self.image_format = config.get("image", "image_format")
-        self.snippet_position = config.get("image", "snippet_position")
-        self.snippet_size = config.get("image", "snippet_size")
+
+        self.snippet_position = (
+            int(config.get("image", "snippet_position_x")),
+            int(config.get("image", "snippet_position_y")),
+        )
+
+        self.snippet_size = (
+            int(config.get("image", "snippet_size_x")),
+            int(config.get("image", "snippet_size_y")),
+        )
+
+        def box(self):
+            """
+            Builds a usable box to make the snippet and draw
+            a rectangle in the original image where the snippet is cut out
+            e.g. ImageDraw.draw.rectangle(Configuration.box(), outline="green", widht=2)
+            """
+            return (
+                self.snippet_position[0],
+                self.snippet_position[1],
+                self.snippet_position[0] + self.snippet_size[0],
+                self.snippet_position[1] + self.snippet_size[1],
+            )
+
+
+print(Configuration().snippet_position)
