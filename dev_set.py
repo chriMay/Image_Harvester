@@ -23,18 +23,15 @@ class Configuration:
             int(config.get("image", "snippet_size_y")),
         )
 
-        def box(self):
-            """
-            Builds a usable box to make the snippet and draw
-            a rectangle in the original image where the snippet is cut out
-            e.g. ImageDraw.draw.rectangle(Configuration.box(), outline="green", widht=2)
-            """
-            return (
-                self.snippet_position[0],
-                self.snippet_position[1],
-                self.snippet_position[0] + self.snippet_size[0],
-                self.snippet_position[1] + self.snippet_size[1],
-            )
-
-
-print(type(Configuration().snippet_position))
+    def box(self):
+        """
+        Builds a usable box to make the snippet and draw
+        a rectangle in the original image where the snippet is cut out
+        e.g. ImageDraw.draw.rectangle(Configuration.box(), outline="green", widht=2)
+        """
+        return (
+            self.snippet_position[0],
+            self.snippet_position[1],
+            self.snippet_position[0] + self.snippet_size[0],
+            self.snippet_position[1] + self.snippet_size[1],
+        )

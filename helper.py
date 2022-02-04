@@ -3,7 +3,7 @@ from os import path, mkdir
 from pathlib import Path
 from threading import Thread
 from mvIMPACT.acquire import *
-from PIL import Image
+from PIL import Image, ImageDraw
 import numpy
 import ctypes
 import sys
@@ -90,10 +90,21 @@ class deviceHandler:
                 img_temp_path = Path(
                     "temp_img", "temp." + self.configuration.image_format
                 )
+
+                # If coordinates for a snippet are given just save the snippet
+                # and show the snippet in the test image
+                if (self.configuration.snippet_position != (0,0,) or 
+                        self.configuration.snippet_size != (0, 0)):
+                    snippet = img.crop(self.configuration.box())
+                    draw = ImageDraw.Draw(img)
+                    draw.rectangle(self.configuration.box(), outline="black", width=2)
+                else:
+                    snippet = img
+
                 img.save(img_temp_path)
 
                 if single == False:
-                    self.save_to_path(img)
+                    self.save_to_path(snippet)
 
             if pRequest.unlock() is not DMR_NO_ERROR:
                 print("unlock unsuccesfull", file=sys.stderr)
