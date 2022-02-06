@@ -74,25 +74,25 @@ In this window the frame-rate (_Bildfrequenz_), exposure-time(_Belichtungszeit_)
 If you use some settings very often you can change the default-settings in the config-file. Therefore just overwrite the values for the parameter you want to change.  
 **Important info about parameters:**
 
-- FrameRate
+- FrameRate  
   Unit: Hz
 
-- ExposureTime
+- ExposureTime  
   Unit: µs (Microseconds)
 
-- Gain
+- Gain  
   Unit: absolute value (for more information see [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux))
 
-- Trigger
+- Trigger  
   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source. (see _config.ini_)
 
-- image_format
+- image_format  
   for valid formats have a look in the [pillow documentation](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html?highlight=formats)
 
-- snippet_position_x/y
+- snippet_position_x/y  
   As (x, y) in Pixels starting from left upper corner of the original image
 
-- snippet_size_x/y
+- snippet_size_x/y  
   Size of the snippet in vertical (x-direction) and horizontal (y-direction) direction
 
 # Further Information for developers
