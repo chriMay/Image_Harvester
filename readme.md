@@ -52,7 +52,7 @@ There is a main-window and a subwindow for the settings.
 
 5. Pressing the _Start_-button starts the Harvesting Process of the images. If its active an information (Bildaufnahme aktiv) is displayed on the _Information-frame_. A folder will be created which is named in the format _YYYY-MM-DD_hh-mm_. The images are stored in this folder and named after the timestamp when they were taken. If there is not device found an information is displayed on the _Information-frame_.
 
-6. Pressing the _Stop_-button stops the Harvesting Process. (At the moment a bit brutal implementation)
+6. Pressing the _Stop_-button stops the Harvesting Process.
 
 ### Settings-Window
 
