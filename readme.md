@@ -11,20 +11,6 @@ HMI to connect to a linked Camera from MatrixVision, to make changes on some set
 The currently used camera in the field is mvBlueCOUGAR-X105bG
 For testing the Software I got a mvBlueFOX3-2051G.
 
-## Parameters which can be set (with device specific default settings):
-
-1. FrameRate (Frequenz mit der Bilder aufgenommen werden)
-   BlueFox3: 5450 Hz
-
-2. Exposure Time
-   BlueFox3: 20000 us (Microseconds)
-
-3. Gain
-   BlueFox3: 0 absolute physical value!
-
-4. Trigger
-   There are free lines on the camera which can be used to send a trigger signal. For example to trigger an external light source. (see _config.ini_)
-
 # How to use
 
 ## Installation Guide
