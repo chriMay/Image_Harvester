@@ -7,7 +7,7 @@
 
 ## Task
 
-HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path.
+HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path. To save storage you can store only a relevant snippet of the images.
 The currently used camera in the field is mvBlueCOUGAR-X105bG
 For testing the Software I got a mvBlueFOX3-2051G.
 
@@ -27,16 +27,17 @@ For testing the Software I got a mvBlueFOX3-2051G.
 
 # How to use
 
-## How to run the code
+## Installation Guide
 
-clone the repository to a directory (dirpath) of your choice
+If not installed yet you may need some packages before you can run the code. Therefore I refer to the **Used packages** section.
+clone the repository to a directory (filepath) of your choice
 
 <!-- prettier-ignore -->
-1.     $ cd dirpath 
+1.     $ cd filepath 
 2.     $ git clone https://github.com/chriMay/Image_Harvester.git
 Change to Image_Harvester and run the main.py in the terminal
 
-3.     $ cd dirpath/Image_Harvester
+3.     $ cd filepath/Image_Harvester
 4.     $ python3 main.py
 Or give the file the the right to execute and run it by double-clicking main.py in the windows-manager
 
@@ -68,6 +69,10 @@ There is a main-window and a subwindow for the settings.
 ![Settings-](pictures/screenshot_settings.png)  
 In this window the frame-rate (_Bildfrequenz_), exposure-time(_Belichtungszeit_) and the gain (_Gain(ISO)_) can be changed. The button _Übernehmen_ overwrites the default-settings in the _config.ini_ file. The current settings are displayed in the _Information-frame_ of the **Main-Window** (see section above).  
 **Notice:** With every start of the program the settings change back to the default-settings from the _config.ini_ file.
+
+## Snippet feature
+
+The size and position of the snippet can be set in the _config.ini_. Therefore you have to write the coordinates in pixels to the related variable. The coordinates are given in (x, y)-format, where x is the horizontal and y the vertical direction starting from the left upper corner of the image/snippet. If you don't want to use the snippet-feature just type (0, 0) to both related variables in the config file.
 
 ## Config-file (_config.ini_)
 
@@ -119,6 +124,10 @@ Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "sto
 - mvIMPACT:
   1.  Download [Drivers & Software](https://www.matrix-vision.com/de/downloads/treiber-software) and follow the [instructions](https://www.matrix-vision.com/de/downloads/setup/mvbluecougar-family/quickstart-mvbluecougar-linux)
   2.  Follow instructions of the [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux)
+
+Most packages should come preinstalled with python. Non-preinstalled packages are listed in _requirements.txt_. They can be installed by changin to the Image-Harvester directory and typing:
+
+    $ pip install -r requirements.txt
 
 # Open Questions
 
