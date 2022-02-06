@@ -103,7 +103,6 @@ Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "sto
 - tkinter
 - pillow
 - numpy
-- ctypes
 
 ### Other sources
 
