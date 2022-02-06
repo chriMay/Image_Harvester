@@ -129,8 +129,6 @@ Most packages should come preinstalled with python. Non-preinstalled packages ar
 
     $ pip install -r requirements.txt
 
-# Open Questions
-
 # ToDo
 
 - Statistics of camera in GUI or a logfile (zb:live die frequenz angeben)
