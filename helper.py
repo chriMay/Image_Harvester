@@ -93,11 +93,16 @@ class deviceHandler:
 
                 # If coordinates for a snippet are given just save the snippet
                 # and show the snippet in the test image
-                if (self.configuration.snippet_position != (0,0,) or 
-                        self.configuration.snippet_size != (0, 0)):
+                snippet_position_set = self.configuration.snippet_position != (0, 0)
+                snippet_size_set = self.configuration.snippet_size != (0, 0)
+                if snippet_position_set or snippet_size_set:
                     snippet = img.crop(self.configuration.box())
                     draw = ImageDraw.Draw(img)
-                    draw.rectangle(self.configuration.box(), outline=self.configuration.snippet_color, width=2)
+                    draw.rectangle(
+                        self.configuration.box(),
+                        outline=self.configuration.snippet_color,
+                        width=2,
+                    )
                 else:
                     snippet = img
 
