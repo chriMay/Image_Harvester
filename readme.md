@@ -7,8 +7,8 @@
 
 ## Task
 
-HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path. To save storage you can store only a relevant snippet of the images.
-The currently used camera in the field is mvBlueCOUGAR-X105bG
+HMI to connect to a linked Camera from MatrixVision, to make changes on some settings, get images and save them to a given path. To save storage you can store only a relevant snippet of the images.  
+The currently used camera in the field is mvBlueCOUGAR-X105bG.  
 For testing the Software I got a mvBlueFOX3-2051G.
 
 # How to use
@@ -41,12 +41,12 @@ There is a main-window and a subwindow for the settings.
 
 2. In this row you can see the current path where the images should be stored. With the button _Speicherort wählen_ you can change the path.
 
-3. In the next row you can choose the path where the images will be stored
+3. In the next row you can choose the path where the images will be stored.
    With the Button _Einstellungen_ the **Settings-Window** (see section below) will pop up.
 
 4. With the button _Testbild_ you can make a test image to check if your settings are correct and the device points in the right direction.
 
-5. Pressing the _Start_-button starts the Harvesting Process of the images. If its active an information (Bildaufnahme aktiv) is displayed on the _Information-frame_. A folder will be created which is named in the format _YYYY-MM-DD_hh-mm_. The images are stored in this folder and named after the timestamp when they were taken. If there is not device found an information is displayed on the _Information-frame_.
+5. Pressing the _Start_-button starts the Harvesting Process of the images. If its active an information (Bildaufnahme aktiv) is displayed on the _Information-frame_. A folder will be created which is named in the format _YYYY-MM-DD_hh-mm_. The images are stored in this folder and named after the timestamp when they were taken. If there is no device found an information is displayed on the _Information-frame_.
 
 6. Pressing the _Stop_-button stops the Harvesting Process.
 
@@ -94,7 +94,7 @@ Once the _DeviceManager_ is initialized, new connected devices are appended to t
 
 ## Settings
 
-Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "stored" independent of opening and closing the device. As long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings. Therefore the "default-settings" can be changed in the _config.ini_
+Once the settings (frameRate, exposureTime, gain, etc) are applied, they are "stored" independent of opening and closing the device. As long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings. Therefore the "default-settings" can be changed in the _config.ini_
 
 # Used Packages
 
@@ -110,7 +110,7 @@ Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "sto
   1.  Download [Drivers & Software](https://www.matrix-vision.com/de/downloads/treiber-software) and follow the [instructions](https://www.matrix-vision.com/de/downloads/setup/mvbluecougar-family/quickstart-mvbluecougar-linux)
   2.  Follow instructions of the [mvIMPACT Acquire SDK Manual](https://www.matrix-vision.com/manuals/SDK_PYTHON/Building_page.html#Python_BuildingLinux)
 
-Most packages should come preinstalled with python. Non-preinstalled packages are listed in _requirements.txt_. They can be installed by changin to the Image-Harvester directory and typing:
+Most packages should come preinstalled with python. Non-preinstalled packages are listed in _requirements.txt_. They can be installed by changing to the Image-Harvester directory and typing:
 
     $ pip install -r requirements.txt
 
