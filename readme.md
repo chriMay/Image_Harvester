@@ -41,7 +41,7 @@ There is a main-window and a subwindow for the settings.
 
 ![Mainwindow](pictures/noted_mainwindow.png)
 
-1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Known Issues** section.
+1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Important Information -> DeviceManager** section.
 
 2. In this row you can see the current path where the images should be stored. With the button _Speicherort wählen_ you can change the path.
 
@@ -95,17 +95,6 @@ Once the _DeviceManager_ is initialized, new connected devices are appended to t
 ## Settings
 
 Once the settings(frameRate, exposureTime, gain, etc) are applied, they are "stored" independent of opening and closing the device. As long the device stays connected to the host. Once the connection to the host is lost, the settings of the device jump back to default settings. Therefore the "default-settings" can be changed in the _config.ini_
-
-# Known issues
-
-## Bug beim Aktualisieren des Dropdown-Menus zum auswählen der Kamera
-
-**Ausgangssituation:** Wenn Kameras angesteckt sind und das Programm gestartet wird oder wenn Kameras nach dem Start des Programms angesteckt werden
-**Bug:** Werden verbundene Kameras abgehängt und auf den Aktualisieren Button gedrückt bleiben alle bis dahin angesteckten Kameras im Dropdown sichtbar
-**bekannte Auswirkungen:**
-
-- set_device() in gui.py: kann evtl vereinfacht werden wenn behoben(siehe try-except)
-- update_deviceDropdown() in gui.py: unmittelbar betroffene Funktion
 
 # Used Packages
 
