@@ -1,9 +1,9 @@
-# Not final version, but functional
-
-# Important Information
+# Important information
 
 - The language of the GUI is german
 - It is written on a Linux-based system and not tested on other OS.
+- Uses the [MatrixVision SDK](https://www.matrix-vision.com/manuals/SDK_PYTHON/index.html)
+- python version 3.8
 
 ## Task
 
@@ -29,9 +29,18 @@ For testing the Software I got a mvBlueFOX3-2051G.
 
 ## How to run the code
 
-1. $ git clone https://github.com/chriMay/Image_Harvester.git
-2. $ cd ../Image_Harvester
-3. $ python main.py
+clone the repository to a directory (dirpath) of your choice
+
+<!-- prettier-ignore -->
+1.     $ cd dirpath 
+2.     $ git clone https://github.com/chriMay/Image_Harvester.git
+Change to Image_Harvester and run the main.py in the terminal
+
+3.     $ cd dirpath/Image_Harvester
+4.     $ python3 main.py
+Or give the file the the right to execute and run it by double-clicking main.py in the windows-manager
+
+4.     $ chmod +x main.py
 
 ## Enduser-Usage of Image-Harvester
 
@@ -41,7 +50,7 @@ There is a main-window and a subwindow for the settings.
 
 ![Mainwindow](pictures/noted_mainwindow.png)
 
-1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Important Information -> DeviceManager** section.
+1. At the top you can choose between the cameras linked to the PC. If you link devices to the PC after starting the _Image Harvester_ they won't show up. Therefore you has to press the _Aktualisieren_-Button. If you face unusual behavior for example after disconnecting a device and pressing _Aktualisieren_ afterwards, you may have a look at the **Further information for developers** section.
 
 2. In this row you can see the current path where the images should be stored. With the button _Speicherort wählen_ you can change the path.
 
@@ -86,7 +95,7 @@ If you use some settings very often you can change the default-settings in the c
 - snippet_size_x/y
   Size of the snippet in vertical (x-direction) and horizontal (y-direction) direction
 
-# Important Information
+# Further Information for developers
 
 ## DeviceManager
 
