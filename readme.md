@@ -30,7 +30,7 @@ For testing the Software I got a mvBlueFOX3-2051G.
 ## Installation Guide
 
 If not installed yet you may need some packages before you can run the code. Therefore I refer to the **Used packages** section.
-clone the repository to a directory (filepath) of your choice
+Clone the repository to a directory of your choice `filepath`
 
 <!-- prettier-ignore -->
 1.     $ cd filepath 
@@ -134,4 +134,3 @@ Most packages should come preinstalled with python. Non-preinstalled packages ar
 # ToDo
 
 - Statistics of camera in GUI or a logfile (zb:live die frequenz angeben)
-- description snippet
