@@ -41,9 +41,12 @@ class deviceHandler:
         self.pDev = self.devMgr.getDevice(self.index)
         # interfaceLayout decides if [1]deviceSpecific interface or [2]GenICam interface will be used
         # The following if-statement makes sure that the GenICam interface is used
-
         if self.pDev.interfaceLayout.read() != 2:
             self.pDev.interfaceLayout.write(2)
+        
+        # Sets userSetDefault to Default settings, to make sure no other settings-set is used
+        self.user_set_control = UserSetControl(self.pDev)
+        self.user_set_control.userSetDefault("Default")
 
         self.acqui_control = AcquisitionControl(self.pDev)
         self.analog_control = AnalogControl(self.pDev)
