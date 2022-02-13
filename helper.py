@@ -17,22 +17,18 @@ class deviceHandler:
         self.index = index
         self.save_path = save_path
 
-    def save_to_path(self, image):
+    def make_save_path(self):
         """
-        Make directory with name of format YYYY-MM-DD_hh:mm .
+        Make directory with name of format YYYY-MM-DD_hh:mm.
         """
 
         dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M")
+        new_save_path = Path(self.save_path, dir_name)
+        if new_save_path != self.save_path:
+            self.save_path = new_save_path
 
-        current_time = datetime.now().strftime("%H-%M-%S-%f")
-        file_name = f"{current_time}.{self.configuration.image_format}"
-
-        save_path = Path(self.save_path, dir_name)
-
-        if not path.isdir(save_path):
-            mkdir(save_path)
-
-        image.save(Path(save_path, file_name))
+        if not path.isdir(self.save_path):
+            mkdir(self.save_path)
 
     def init_device(self):
         """
@@ -43,10 +39,11 @@ class deviceHandler:
         # The following if-statement makes sure that the GenICam interface is used
         if self.pDev.interfaceLayout.read() != 2:
             self.pDev.interfaceLayout.write(2)
-        
+
         # Sets userSetDefault to Default settings, to make sure no other settings-set is used
-        self.user_set_control = UserSetControl(self.pDev)
-        self.user_set_control.userSetDefault("Default")
+        if self.pDev.family.readS() == "mvBlueCOUGAR":
+            self.user_set_control = UserSetControl(self.pDev)
+            self.user_set_control.userSetDefault("Default")
 
         self.acqui_control = AcquisitionControl(self.pDev)
         self.analog_control = AnalogControl(self.pDev)
@@ -96,20 +93,26 @@ class deviceHandler:
 
                 # If coordinates for a snippet are given just save the snippet
                 # and show the snippet in the test image
-                snippet_position_set = (self.configuration.snippet_position != (0,0))
-                snippet_size_set = (self.configuration.snippet_size != (0,0))
-                
+                snippet_position_set = self.configuration.snippet_position != (0, 0)
+                snippet_size_set = self.configuration.snippet_size != (0, 0)
+
                 if snippet_position_set or snippet_size_set:
                     snippet = img.crop(self.configuration.box())
                     draw = ImageDraw.Draw(img)
-                    draw.rectangle(self.configuration.box(), outline=self.configuration.snippet_color, width=2)
+                    draw.rectangle(
+                        self.configuration.box(),
+                        outline=self.configuration.snippet_color,
+                        width=2,
+                    )
                 else:
                     snippet = img
 
                 img.save(img_temp_path)
 
                 if single == False:
-                    self.save_to_path(snippet)
+                    current_time = datetime.now().strftime("%H-%M-%S-%f")
+                    file_name = f"{current_time}.{self.configuration.image_format}"
+                    snippet.save(Path(self.save_path, file_name))
 
             if pRequest.unlock() is not DMR_NO_ERROR:
                 print("unlock unsuccesfull", file=sys.stderr)
@@ -180,6 +183,8 @@ class deviceHandler:
         """
 
         self.init_device()
+
+        self.make_save_path()
 
         while self.fi.imageRequestSingle() == DMR_NO_ERROR:
             print("Buffer queued")
