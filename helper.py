@@ -109,6 +109,7 @@ class deviceHandler:
 
                 img.save(img_temp_path)
 
+                # saving the images/snippets 
                 if single == False:
                     current_time = datetime.now().strftime("%H-%M-%S-%f")
                     file_name = f"{current_time}.{self.configuration.image_format}"
@@ -145,6 +146,7 @@ class deviceHandler:
         """
         self.init_device()
 
+        # load request buffer with requests to make them ready for the harvesting-process
         while self.fi.imageRequestSingle() == DMR_NO_ERROR:
             print("Buffer queued")
 
